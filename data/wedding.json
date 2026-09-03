@@ -1,0 +1,66 @@
+{
+    "bride": {
+        "firstName": "Grace",
+        "fullName": "Grace Susan Abraham"
+    },
+
+    "groom": {
+        "firstName": "Abith",
+        "fullName": "Abith Itty Jacob"
+    },
+
+    "wedding": {
+        "date": "2026-09-19",
+        "dateDisplay": "19th September 2026",
+        "startTime": "11:00:00",
+        "endTime": "14:00:00"
+    },
+
+    "reception": {
+        "date": "2026-09-21",
+        "dateDisplay": "21 September 2026",
+        "startTime": "16:00:00",
+        "endTime": "20:00:00"
+    },
+
+    "venue": {
+        "name": "Ai Thousa Convention Centre",
+        "address": "Aithousa Convention CentreOpposite Sacred Heart Higher Secondary SchoolSH Mount Road, Choottuveli, KumaranalloorNattassery S H Mount, Kottayam, Kerala — 686006, India",
+        "googleMapsUrl": "https://maps.app.goo.gl/gQLeyftbkNP2pK3L8"
+    },
+
+    "story": [
+        {
+            "year": "2024",
+            "title": "The First Meeting",
+            "description": "Where our paths first crossed and a beautiful friendship began."
+        },
+        {
+            "year": "2025",
+            "title": "Growing Together",
+            "description": "Countless conversations, shared dreams, and realizing we were meant for each other."
+        },
+        {
+            "year": "2026",
+            "title": "Saying Yes",
+            "description": "The beginning of our forever journey together."
+        }
+    ],
+
+    "gallery": [
+        "assets/images/main-placeholder.jpg"
+       
+    ],
+
+    "mainPhoto": "assets/images/main-placeholder.jpg",
+
+    "music": {
+        "enabled": true,
+        "file": "assets/audio/wedding-music.mp3"
+    },
+
+    "verse": {
+        "text": "And now these three remain: faith, hope and love. But the greatest of these is love.",
+        "reference": "1 Corinthians 13:13"
+    }
+}

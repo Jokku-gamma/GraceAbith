@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grace & Abith — Wedding Invitation</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- Falling Petals Background Animation -->
+    <div class="petals"></div>
+
+    <!-- Music Toggle Button -->
+    <button id="musicToggle" aria-label="Toggle background music">♫</button>
+
+    <main>
+        <!-- Hero Section (Updated with Story Button) -->
+        <section id="hero" class="reveal" style="text-align: center; min-height: 95vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem 1rem;">
+            <!-- Verse Container -->
+            <div id="verseContainer" style="max-width: 600px; margin-bottom: 2.5rem; font-style: italic; color: var(--text-secondary); font-family: var(--font-serif); font-size: 1.1rem; line-height: 1.6;">
+                <p id="verseText" style="margin-bottom: 0.4rem;"></p>
+                <span id="verseRef" style="font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; color: var(--accent-color);"></span>
+            </div>
+
+            <p style="letter-spacing: 3px; text-transform: uppercase; font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">The Beginning of Forever</p>
+            
+            <h1 style="font-size: 3rem; margin-bottom: 1.5rem; line-height: 1.3;">
+                <span id="brideName">Grace Susan Abraham</span>
+                <div style="font-size: 1.6rem; font-style: italic; font-weight: normal; color: var(--text-secondary); margin: 0.3rem 0;">(Aleena)</div>
+                <div style="font-size: 2.2rem; font-weight: normal; margin: 0.3rem 0; color: var(--accent-color);">&</div>
+                <span id="groomName">Abith Itty Jacob</span>
+            </h1>
+
+            <p id="heroDate" style="font-size: 1.2rem; font-family: var(--font-serif); font-style: italic; margin-bottom: 2rem; color: var(--accent-color);">19 September 2026</p>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#countdown" class="btn">Discover Our Day</a>
+                <button id="storyBtn" class="btn btn-outline">Wanna hear our story? 😜</button>
+            </div>
+        </section>
+
+        <!-- [Keep all your other sections here: Countdown, Details, Gallery, Wishes] -->
+
+        <!-- Cringe Story Modal (Place before closing </main> or </body>) -->
+        <div id="storyModal" class="modal-overlay hidden">
+            <div class="modal-content chat-container">
+                <div class="chat-header">
+                    <h3>Our Cringe Story 🙈</h3>
+                    <button id="closeStoryModal" class="close-btn">&times;</button>
+                </div>
+                <div class="chat-box">
+                    <div class="message left">
+                        <span class="sender">Abith</span>
+                        <div class="bubble">I want to marry you.</div>
+                    </div>
+                    <div class="message right">
+                        <span class="sender">Aleena</span>
+                        <div class="bubble">Let's wait</div>
+                    </div>
+                    
+                    <div class="chat-timestamp">1 year later...</div>
+                    
+                    <div class="message left">
+                        <span class="sender">Abith</span>
+                        <div class="bubble">I saw 10-12 girls but i did'nt liked anyone. I liked you from the start.</div>
+                    </div>
+                    <div class="message right">
+                        <span class="sender">Aleena</span>
+                        <div class="bubble">I also saw 3-5 boys but i did'nt liked anyone.</div>
+                    </div>
+                    <div class="message left">
+                        <span class="sender">Abith</span>
+                        <div class="bubble">Will u marry me?</div>
+                    </div>
+                    <div class="message right">
+                        <span class="sender">Aleena</span>
+                        <div class="bubble">Yes.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Countdown Section -->
+        <section id="countdown" class="reveal" style="text-align: center; background-color: var(--soft-pink); border-radius: 16px; margin: 2rem auto;">
+            <h2 id="countdownTitle" style="font-size: 2.5rem; margin-bottom: 2rem;">Counting Down to Forever</h2>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <div>
+                    <span id="days" style="font-size: 3rem; font-family: var(--font-serif); display: block;">00</span>
+                    <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Days</span>
+                </div>
+                <div>
+                    <span id="hours" style="font-size: 3rem; font-family: var(--font-serif); display: block;">00</span>
+                    <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Hours</span>
+                </div>
+                <div>
+                    <span id="minutes" style="font-size: 3rem; font-family: var(--font-serif); display: block;">00</span>
+                    <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Minutes</span>
+                </div>
+                <div>
+                    <span id="seconds" style="font-size: 3rem; font-family: var(--font-serif); display: block;">00</span>
+                    <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Seconds</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wedding Details & Calendar Section -->
+        <section id="wedding-details" class="reveal" style="text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">The Celebration</h2>
+            <p id="weddingDate" style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--accent-color); font-style: italic;"></p>
+            
+            <!-- Styled Venue Card -->
+            <div style="max-width: 600px; margin: 0 auto 2rem auto; background: var(--card-bg, #fff); border: 1px solid var(--border-color, #e5e5e5); border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+                <h3 id="venueName" style="font-size: 1.5rem; margin-bottom: 0.75rem; font-family: var(--font-serif);"></h3>
+                <p id="venueAddress" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;"></p>
+                <a id="googleMapsLink" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; padding: 0.6rem 1.2rem;">
+                    📍 View on Google Maps
+                </a>
+            </div>
+
+            <div style="position: relative; display: inline-block;">
+                <button id="calendarButton" class="btn">Add to Calendar</button>
+                <div id="calendarOptions" class="hidden" style="position: absolute; top: 110%; left: 50%; transform: translateX(-50%); background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem; width: 200px; z-index: 10;">
+                    <button id="googleCalendarButton" class="btn btn-outline" style="width: 100%; font-size: 0.85rem; padding: 0.5rem;">Google Calendar</button>
+                    <button id="icsCalendarButton" class="btn btn-outline" style="width: 100%; font-size: 0.85rem; padding: 0.5rem;">Download .ics</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="reveal">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="font-size: 2.5rem;">Moments Together</h2>
+                <p style="color: var(--text-secondary);">A glimpse into our journey</p>
+            </div>
+            <div id="galleryGrid" class="gallery-grid">
+                <!-- Populated dynamically via gallery.js -->
+            </div>
+        </section>
+
+        <!-- Wishes Section -->
+        <section id="wishes" class="reveal" style="max-width: 800px; background-color: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color); margin: 2rem auto; padding: 3rem 2rem;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Send Your Wishes</h2>
+                <p style="color: var(--text-secondary);">Choose a template or write your own message to save for Grace & Abith</p>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem;">
+                <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;" data-command="bless">🙏 Bless</button>
+                <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;" data-command="congratulate">💐 Congratulate</button>
+                <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;" data-command="love">❤️ Love</button>
+                <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;" data-command="funny">😂 Funny</button>
+                <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;" data-command="poetic">✨ Poetic</button>
+                <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;" data-command="short">💌 Short</button>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <input type="text" id="wishName" placeholder="Your Name" style="padding: 0.8rem 1rem; border: 1px solid var(--border-color); border-radius: 8px; font-family: var(--font-sans); outline: none;">
+                <textarea id="wishMessage" rows="4" placeholder="Your wish for Grace & Abith..." style="padding: 0.8rem 1rem; border: 1px solid var(--border-color); border-radius: 8px; font-family: var(--font-sans); outline: none; resize: vertical;"></textarea>
+                <button id="sendWishButton" class="btn" style="width: 100%;">Send Your Wish ❤️</button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="text-align: center; padding: 3rem 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+            <p class="serif" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-primary);">Grace & Abith</p>
+            <p>We can't wait to celebrate with you.</p>
+        </footer>
+    </main>
+
+    <!-- JavaScript Files Integration -->
+    <script src="js/countdown.js"></script>
+    <script src="js/calender.js"></script>
+    <script src="js/wishes.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
