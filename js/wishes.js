@@ -8,7 +8,7 @@ const wishTemplates = {
 
     love: "May your life together always be filled with love, kindness and countless beautiful moments. ❤️",
 
-    funny: "Congratulations! 🎉 Wishing you both a lifetime of love, laughter and only the occasional argument about where to eat. 😂❤️",
+    funny: "Happy married life! ❤️ May your love grow stronger, your fights stay shorter, and your food portions at the wedding stay HUGE. Also, we're coming for the food, so please don't disappoint us! 🍗",
 
     poetic: "Two hearts, one promise, one journey, and a lifetime of memories waiting to be made. Congratulations! ✨❤️",
 
