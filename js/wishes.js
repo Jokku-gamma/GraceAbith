@@ -1,99 +1,423 @@
-// js/wishes.js
-
 const wishTemplates = {
+
     wish: "Wishing you both a lifetime filled with love, laughter and beautiful memories. Congratulations! ❤️",
+
     bless: "May God bless your marriage with endless love, peace, joy and togetherness. 🙏❤️",
+
     congratulate: "Heartiest congratulations to Grace and Abith! Wishing you both a beautiful life together. 💐",
+
     love: "May your life together always be filled with love, kindness and countless beautiful moments. ❤️",
+
     funny: "Congratulations! 🎉 Wishing you both a lifetime of love, laughter and only the occasional argument about where to eat. 😂❤️",
+
     poetic: "Two hearts, one promise, one journey, and a lifetime of memories waiting to be made. Congratulations! ✨❤️",
+
     short: "Congratulations Grace & Abith! Wishing you both a lifetime of happiness. ❤️"
+
 };
 
-// Replace with your SheetDB API endpoint URL after setting up your Google Sheet
+
 const SHEETDB_API_URL = "https://sheetdb.io/api/v1/dwbzevnvf6hdg";
 
+
 function initializeWishes() {
+
     const buttons = document.querySelectorAll("[data-command]");
+
     buttons.forEach(button => {
+
         button.addEventListener("click", () => {
+
             const command = button.dataset.command;
+
             generateWish(command);
+
         });
+
     });
 
+
     const sendBtn = document.getElementById("sendWishButton");
+
     if (sendBtn) {
+
         sendBtn.addEventListener("click", sendWish);
+
     }
+
+
+    // -------------------------------------------------
+    // NAME VALIDATION
+    // -------------------------------------------------
+
+    const nameInput = document.getElementById("wishName");
+    const nameError = document.getElementById("wishNameError");
+
+    if (nameInput) {
+
+        nameInput.addEventListener("input", function () {
+
+            // Allow Unicode letters and spaces only.
+            // This supports names from different languages.
+            this.value = this.value.replace(/[^\p{L}\s]/gu, "");
+
+            // Replace multiple spaces with one space.
+            this.value = this.value.replace(/\s{2,}/g, " ");
+
+            // Remove spaces from the beginning.
+            this.value = this.value.replace(/^\s+/, "");
+
+            const name = this.value.trim();
+
+            if (!name) {
+
+                if (nameError) {
+                    nameError.style.display = "none";
+                }
+
+                this.style.borderColor = "var(--border-color)";
+
+                return;
+            }
+
+
+            if (isValidName(name)) {
+
+                if (nameError) {
+                    nameError.style.display = "none";
+                }
+
+                this.style.borderColor = "var(--border-color)";
+
+            } else {
+
+                if (nameError) {
+                    nameError.textContent =
+                        "Please enter a valid name using letters and spaces only.";
+
+                    nameError.style.display = "block";
+                }
+
+                this.style.borderColor = "#d9534f";
+
+            }
+
+        });
+
+
+        // Also validate when the user leaves the field.
+        nameInput.addEventListener("blur", function () {
+
+            const name = this.value.trim();
+
+            if (!name) {
+                return;
+            }
+
+            if (!isValidName(name)) {
+
+                if (nameError) {
+                    nameError.textContent =
+                        "Please enter a valid name using letters and spaces only.";
+
+                    nameError.style.display = "block";
+                }
+
+                this.style.borderColor = "#d9534f";
+
+            }
+
+        });
+
+    }
+
 }
 
+
+function isValidName(name) {
+
+    /*
+     * Name rules:
+     *
+     * 1. At least one letter
+     * 2. Only Unicode letters
+     * 3. Spaces allowed between words
+     * 4. No numbers
+     * 5. No special characters
+     * 6. No emojis
+     * 7. No leading/trailing spaces
+     */
+
+    return /^[\p{L}]+(?:\s+[\p{L}]+)*$/u.test(name);
+
+}
+
+
 function generateWish(command) {
+
     const message = wishTemplates[command];
+
     if (!message) return;
 
     const messageBox = document.getElementById("wishMessage");
-    if (messageBox) messageBox.value = message;
+
+    if (messageBox) {
+        messageBox.value = message;
+    }
+
 }
 
+
+// Custom Success Notification
+function showSuccessMessage(text) {
+
+    const toast = document.createElement("div");
+
+    toast.textContent = text;
+
+
+    // Custom UI styling for the message
+    Object.assign(toast.style, {
+
+        position: "fixed",
+
+        bottom: "20px",
+
+        left: "50%",
+
+        transform: "translateX(-50%) translateY(20px)",
+
+        backgroundColor: "var(--accent-color, #e07a5f)",
+
+        color: "#fff",
+
+        padding: "12px 24px",
+
+        borderRadius: "30px",
+
+        boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
+
+        fontFamily: "var(--font-sans, sans-serif)",
+
+        fontSize: "0.95rem",
+
+        zIndex: "9999",
+
+        opacity: "0",
+
+        transition: "all 0.3s ease"
+
+    });
+
+
+    document.body.appendChild(toast);
+
+
+    // Fade in
+    setTimeout(() => {
+
+        toast.style.opacity = "1";
+
+        toast.style.transform = "translateX(-50%) translateY(0)";
+
+    }, 10);
+
+
+    // Fade out and remove after 3 seconds
+    setTimeout(() => {
+
+        toast.style.opacity = "0";
+
+        toast.style.transform = "translateX(-50%) translateY(20px)";
+
+        setTimeout(() => toast.remove(), 300);
+
+    }, 3000);
+
+}
+
+
 async function sendWish() {
+
     const nameInput = document.getElementById("wishName");
+
     const messageInput = document.getElementById("wishMessage");
+
     const sendBtn = document.getElementById("sendWishButton");
 
-    if (!nameInput || !messageInput) return;
+    const nameError = document.getElementById("wishNameError");
+
+
+    if (!nameInput || !messageInput) {
+        return;
+    }
+
 
     const name = nameInput.value.trim();
+
     const message = messageInput.value.trim();
 
+
+    // -------------------------------------------------
+    // NAME VALIDATION
+    // -------------------------------------------------
+
     if (!name) {
-        alert("Please enter your name.");
+
+        if (nameError) {
+
+            nameError.textContent = "Please enter your name.";
+
+            nameError.style.display = "block";
+
+        }
+
+        nameInput.style.borderColor = "#d9534f";
+
+        nameInput.focus();
+
         return;
+
     }
+
+
+    if (!isValidName(name)) {
+
+        if (nameError) {
+
+            nameError.textContent =
+                "Please enter a valid name using letters and spaces only.";
+
+            nameError.style.display = "block";
+
+        }
+
+        nameInput.style.borderColor = "#d9534f";
+
+        nameInput.focus();
+
+        return;
+
+    }
+
+
+    // Reset validation appearance
+    if (nameError) {
+        nameError.style.display = "none";
+    }
+
+    nameInput.style.borderColor = "var(--border-color)";
+
+
+    // -------------------------------------------------
+    // MESSAGE VALIDATION
+    // -------------------------------------------------
 
     if (!message) {
+
         alert("Please choose or write a wish.");
+
+        messageInput.focus();
+
         return;
+
     }
 
-    // SheetDB expects data formatted in an object wrapper
+
+    // -------------------------------------------------
+    // SHEETDB PAYLOAD
+    // -------------------------------------------------
+
     const payload = {
+
         data: {
+
             Name: name,
+
             Message: message,
+
             Date: new Date().toLocaleString()
+
         }
+
     };
 
+
     try {
+
         if (sendBtn) {
+
             sendBtn.disabled = true;
+
             sendBtn.textContent = "Sending your wish... ❤️";
+
         }
+
 
         const response = await fetch(SHEETDB_API_URL, {
+
             method: "POST",
+
             headers: {
+
                 "Content-Type": "application/json",
+
                 "Accept": "application/json"
+
             },
+
             body: JSON.stringify(payload)
+
         });
 
+
         if (!response.ok) {
+
             throw new Error("Network response was not ok");
+
         }
 
-        alert("Thank you! Your wish has been saved for Grace & Abith. ❤️");
+
+        // Using the custom success message
+        showSuccessMessage(
+            "Thank you! Your wish has been saved. ❤️"
+        );
+
+
+        // Clear form after successful submission
         nameInput.value = "";
+
         messageInput.value = "";
-    } catch (error) {
-        console.error("Failed to save wish:", error);
-        alert("Oops! Something went wrong saving your wish. Please try again.");
-    } finally {
-        if (sendBtn) {
-            sendBtn.disabled = false;
-            sendBtn.textContent = "Send Your Wish ❤️";
+
+
+        // Reset validation UI
+        if (nameError) {
+
+            nameError.style.display = "none";
+
         }
+
+        nameInput.style.borderColor = "var(--border-color)";
+
+
+    } catch (error) {
+
+        console.error("Failed to save wish:", error);
+
+        alert(
+            "Oops! Something went wrong saving your wish. Please try again."
+        );
+
+    } finally {
+
+        if (sendBtn) {
+
+            sendBtn.disabled = false;
+
+            sendBtn.textContent = "Send Your Wish ❤️";
+
+        }
+
     }
+
 }
