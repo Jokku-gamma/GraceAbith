@@ -50,24 +50,26 @@ function initializePetals() {
 
 function initializeMusic() {
     const button = document.getElementById("musicToggle");
-    if (!button) return;
+    const audio = document.getElementById("bgMusic");
+    
+    if (!button || !audio) return;
 
-    const audio = new Audio("assets/audio/wedding-music.mp3");
-    audio.loop = true;
     audio.volume = 0.5;
-
     let playing = false;
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
         if (playing) {
             audio.pause();
             button.textContent = "♫";
+            playing = false;
         } else {
-            audio.play().catch(error => {
-                console.log("Music playback blocked by browser policy:", error);
-            });
-            button.textContent = "🔊";
+            try {
+                await audio.play();
+                button.textContent = "🔊";
+                playing = true;
+            } catch (error) {
+                console.error("Playback blocked by browser:", error);
+            }
         }
-        playing = !playing;
     });
 }

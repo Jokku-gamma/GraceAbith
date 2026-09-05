@@ -56,7 +56,7 @@
 
     "music": {
         "enabled": true,
-        "file": "assets/audio/wedding-music.mp3"
+        "file": "assets/audio/bg.mp3"
     },
 
     "verse": {
